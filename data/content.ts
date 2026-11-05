@@ -15,8 +15,8 @@ export const whyUs = [
 ];
 
 export const steps = [
-  { title: "Choose", body: "Pick your favourite marinated packs or build a custom 6-pack box." },
-  { title: "We deliver", body: "Express delivery in vacuum-sealed, temperature-controlled, eco-friendly packaging." },
+  { title: "Choose", body: "Pick your favourite flavours and add them to your cart." },
+  { title: "We deliver", body: "Express delivery across Mumbai, Navi Mumbai and Thane in vacuum-sealed, temperature-controlled packaging." },
   { title: "Cook and eat", body: "Pan grill 2 to 5 minutes each side, or air fry at 200°C. High-protein meals without the work." },
 ];
 
@@ -62,10 +62,11 @@ export const faqs = [
   },
   { q: "Do I need to defrost it?", a: "No. Bring it to room temperature before cooking. There's no defrosting step." },
   { q: "Is it halal?", a: "Yes. Every pack carries the halal mark." },
-  { q: "Can I mix flavours?", a: "Yes. Build a custom 6-pack box from any of our flavours." },
+  { q: "Can I mix flavours?", a: "Yes. Add any combination of flavours to your cart." },
+  { q: "Where do you deliver?", a: "We currently deliver across Mumbai, Navi Mumbai and Thane." },
   { q: "How is it delivered?", a: "Express delivery in vacuum-sealed, temperature-controlled, eco-friendly packaging." },
   {
     q: "How do I pay?",
-    a: "Place your order through the form. We confirm it on WhatsApp and share a UPI payment link, or you can pay on delivery.",
+    a: "Add flavours to your cart and check out with your name, number and address. We confirm the order on WhatsApp and share a UPI payment link, or you can pay on delivery.",
   },
 ];

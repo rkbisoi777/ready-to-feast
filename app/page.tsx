@@ -27,6 +27,7 @@ export default async function HomePage() {
               url: site.url,
               email: site.email,
               sameAs: [site.instagram],
+              areaServed: site.serviceAreas.map((name) => ({ "@type": "City", name })),
             },
             {
               "@type": "FAQPage",
@@ -43,7 +44,7 @@ export default async function HomePage() {
             id="flavours-title"
             eyebrow="Our flavours"
             title={`${products.length} flavours. Pick your feast.`}
-            intro="Order any flavour on its own, or mix six into a custom box."
+            intro="Add any flavours to your cart. Delivered fresh across Mumbai, Navi Mumbai and Thane."
           />
           <ProductGrid products={products} />
         </div>

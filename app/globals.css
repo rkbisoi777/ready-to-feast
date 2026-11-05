@@ -19,7 +19,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 7.5rem;
     -webkit-text-size-adjust: 100%;
   }
   body {
@@ -34,6 +34,19 @@
   }
   dialog::backdrop {
     background: rgb(30 27 24 / 0.6);
+  }
+  dialog.sheet[open] {
+    animation: sheet-up 0.25s ease-out;
+  }
+  @keyframes sheet-up {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  @media (min-width: 640px) {
+    @keyframes sheet-up {
+      from { transform: translateY(1.5rem); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }

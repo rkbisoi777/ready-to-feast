@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
-import OrderButton from "./OrderButton";
 import { CloseIcon, MenuIcon } from "./Icons";
 
 const nav = [
@@ -23,7 +22,7 @@ export default function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 bg-maroon text-white">
+    <header className="bg-maroon text-white">
       <div className="container-x flex h-16 items-center justify-between gap-4 lg:h-20">
         <button
           type="button"
@@ -52,7 +51,7 @@ export default function Header() {
           </ul>
         </nav>
 
-        <OrderButton className="btn-primary !px-4 !py-2 !text-base sm:!px-5">Order now</OrderButton>
+        <Link href="/products/" className="btn-primary !px-4 !py-2 !text-base sm:!px-5">Shop now</Link>
       </div>
 
       {/* Mobile menu */}

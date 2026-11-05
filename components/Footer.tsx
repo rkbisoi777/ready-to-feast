@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="container-x grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-2">
           <Logo light />
-          <p className="mt-4 max-w-sm">Marinated, fresh and ready to cook. High-protein chicken breasts in eight flavours, delivered to your door.</p>
+          <p className="mt-4 max-w-sm">Marinated, fresh and ready to cook. High-protein chicken breasts in eight flavours, delivered across Mumbai, Navi Mumbai and Thane.</p>
         </div>
         <div>
           <h2 className="text-xl text-white">Shop</h2>

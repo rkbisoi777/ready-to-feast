@@ -1,4 +1,4 @@
-import OrderButton from "./OrderButton";
+import Link from "next/link";
 
 export default function CTABanner() {
   return (
@@ -6,7 +6,7 @@ export default function CTABanner() {
       <div className="container-x">
         <h2 id="cta-title" className="text-5xl text-white sm:text-6xl">Your protein goals, minus the prep.</h2>
         <p className="mx-auto mt-4 max-w-xl text-lg text-white/90">Choose your flavours and be ready to feast in 15 minutes.</p>
-        <OrderButton className="btn-light mt-8">Order your feast</OrderButton>
+        <Link href="/products/" className="btn-light mt-8">Order your feast</Link>
       </div>
     </section>
   );

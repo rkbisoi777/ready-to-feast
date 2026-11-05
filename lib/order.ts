@@ -11,7 +11,7 @@ export function orderText(order: Order): string {
   const c = order.customer;
   const lines = order.items.map((i) => `• ${getProductSync(i.handle)?.title ?? i.handle} × ${i.quantity}`);
   return [
-    `*New order – ${site.name}*${order.boxMode ? " (Custom 6-pack box)" : ""}`,
+    `*New order – ${site.name}*`,
     "",
     ...lines,
     "",
@@ -19,9 +19,7 @@ export function orderText(order: Order): string {
     "",
     `*Name:* ${c.name}`,
     `*Phone:* ${c.phone}`,
-    c.email ? `*Email:* ${c.email}` : null,
-    `*Address:* ${c.address}, ${c.city} - ${c.pincode}`,
-    c.date ? `*Preferred delivery:* ${c.date}` : null,
+    `*Address:* ${c.address}, ${c.area} - ${c.pincode}`,
     c.notes ? `*Notes:* ${c.notes}` : null,
   ]
     .filter((l) => l !== null)
@@ -48,7 +46,6 @@ export async function submitOrder(order: Order): Promise<{ emailed: boolean; wha
           access_key: site.web3formsKey,
           subject: `New order from ${order.customer.name} – ${formatPrice(orderTotal(order.items))}`,
           from_name: site.name,
-          replyto: order.customer.email || undefined,
           message: text.replace(/\*/g, ""),
         }),
       });

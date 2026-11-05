@@ -48,3 +48,9 @@ export const InstagramIcon = ({ className = "size-5" }: P) => (
 export const MailIcon = ({ className = "size-5" }: P) => (
   <svg viewBox="0 0 24 24" className={className} {...base}><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></svg>
 );
+export const BagIcon = ({ className = "size-6" }: P) => (
+  <svg viewBox="0 0 24 24" className={className} {...base}><path d="M6 7h12l1 13H5L6 7z" /><path d="M9 7a3 3 0 0 1 6 0" /></svg>
+);
+export const TrashIcon = ({ className = "size-4" }: P) => (
+  <svg viewBox="0 0 24 24" className={className} {...base}><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13" /></svg>
+);

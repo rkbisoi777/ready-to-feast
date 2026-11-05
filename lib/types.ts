@@ -32,16 +32,13 @@ export type LineItem = { handle: string; quantity: number };
 export type Customer = {
   name: string;
   phone: string;
-  email?: string;
   address: string;
-  city: string;
+  area: string; // one of site.serviceAreas
   pincode: string;
-  date?: string;
   notes?: string;
 };
 
 export type Order = {
   items: LineItem[];
-  boxMode: boolean;
   customer: Customer;
 };

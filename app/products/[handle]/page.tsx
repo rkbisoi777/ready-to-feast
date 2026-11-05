@@ -7,7 +7,7 @@ import { whatsappLink } from "@/lib/order";
 import { site } from "@/data/site";
 import ProductGallery from "@/components/ProductGallery";
 import ProductGrid from "@/components/ProductGrid";
-import OrderButton from "@/components/OrderButton";
+import AddToCart from "@/components/AddToCart";
 import SpiceLevel from "@/components/SpiceLevel";
 import CookingStorage from "@/components/CookingStorage";
 import JsonLd from "@/components/JsonLd";
@@ -87,7 +87,7 @@ export default async function ProductPage({ params }: Props) {
           </p>
           <h1 className="text-5xl sm:text-6xl">{product.title}</h1>
           <p className="mt-3 font-display text-3xl font-bold">{formatPrice(product.price)}</p>
-          <p className="text-sm uppercase tracking-wide text-muted">Taxes included · Delivery confirmed on WhatsApp</p>
+          <p className="text-sm uppercase tracking-wide text-muted">Taxes included · Delivery in Mumbai, Navi Mumbai &amp; Thane</p>
 
           <p className="mt-6 text-lg">{product.description}</p>
 
@@ -117,8 +117,8 @@ export default async function ProductPage({ params }: Props) {
             ))}
           </ul>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-2">
-            <OrderButton handle={product.handle} className="btn-primary w-full">Buy now</OrderButton>
+          <div className="mt-8 grid gap-3">
+            <AddToCart handle={product.handle} title={product.title} />
             <a href={whatsappLink(waText)} target="_blank" rel="noopener noreferrer" className="btn-whatsapp w-full">
               <WhatsAppIcon className="size-5" /> Order on WhatsApp
             </a>
@@ -137,14 +137,6 @@ export default async function ProductPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Mobile sticky buy bar */}
-      <div className="sticky bottom-0 z-20 flex items-center justify-between gap-3 border-t border-ink/10 bg-white px-4 py-3 pr-24 lg:hidden">
-        <div className="min-w-0">
-          <p className="truncate font-display text-lg font-bold uppercase leading-tight text-maroon">{product.title}</p>
-          <p className="text-sm">{formatPrice(product.price)}</p>
-        </div>
-        <OrderButton handle={product.handle} className="btn-primary !px-5 !py-2">Buy now</OrderButton>
-      </div>
     </>
   );
 }

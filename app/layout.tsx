@@ -6,7 +6,8 @@ import AnnouncementBar from "@/components/AnnouncementBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
-import OrderProvider from "@/components/OrderProvider";
+import CartProvider from "@/components/CartProvider";
+import FloatingCart from "@/components/FloatingCart";
 
 const barlow = Barlow({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-barlow", display: "swap" });
 const barlowCondensed = Barlow_Condensed({
@@ -49,13 +50,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2">
           Skip to content
         </a>
-        <OrderProvider>
-          <AnnouncementBar />
-          <Header />
+        <CartProvider>
+          <div className="sticky top-0 z-40">
+            <AnnouncementBar />
+            <Header />
+          </div>
           <main id="main">{children}</main>
           <Footer />
+          <FloatingCart />
           <WhatsAppFloat />
-        </OrderProvider>
+        </CartProvider>
       </body>
     </html>
   );

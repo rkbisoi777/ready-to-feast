@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { Product } from "@/lib/types";
 import PackVisual from "./PackVisual";
-import OrderButton from "./OrderButton";
+import { site } from "@/data/site";
+import { WhatsAppIcon } from "./Icons";
 
 // TODO(owner): swap the pack row for a real hero photo (e.g. /images/hero.webp, ~1600px wide).
 export default function Hero({ products }: { products: Product[] }) {
@@ -33,9 +34,14 @@ export default function Hero({ products }: { products: Product[] }) {
             <Link href="/products/" className="btn-light">
               Shop flavours now
             </Link>
-            <OrderButton box className="btn border-2 border-white/70 text-white hover:bg-white hover:text-maroon">
-              Build your 6-pack box
-            </OrderButton>
+            <a
+              href={`https://wa.me/${site.whatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn border-2 border-white/70 text-white hover:bg-white hover:text-maroon"
+            >
+              <WhatsAppIcon className="size-5" /> Order on WhatsApp
+            </a>
           </div>
         </div>
       </div>
