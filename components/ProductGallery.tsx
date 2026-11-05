@@ -24,7 +24,7 @@ export default function ProductGallery({ product }: { product: Product }) {
     <div className="bg-cream-light lg:rounded-l-3xl">
       <div ref={track} onScroll={onScroll} className="no-scrollbar flex snap-x snap-mandatory overflow-x-auto" aria-label={`${product.title} images`}>
         {Array.from({ length: slides }).map((_, i) => (
-          <div key={i} className="aspect-square w-full shrink-0 snap-center p-10 sm:p-16">
+          <div key={i} className={`aspect-square w-full shrink-0 snap-center ${product.images.length ? "" : "p-10 sm:p-16"}`}>
             <PackVisual product={product} index={i} priority={i === 0} size="lg" />
           </div>
         ))}

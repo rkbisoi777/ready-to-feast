@@ -1,24 +1,20 @@
 import Link from "next/link";
-import type { Product } from "@/lib/types";
-import PackVisual from "./PackVisual";
 import { site } from "@/data/site";
 import { WhatsAppIcon } from "./Icons";
 
-// TODO(owner): swap the pack row for a real hero photo (e.g. /images/hero.webp, ~1600px wide).
-export default function Hero({ products }: { products: Product[] }) {
+export default function Hero() {
   return (
     <section aria-labelledby="hero-title">
-      <div className="bg-gradient-to-b from-cream-light to-cream">
-        <div className="container-x grid grid-cols-4 items-end gap-2 pt-8 pb-2 sm:grid-cols-6 sm:gap-4 lg:grid-cols-8 lg:max-w-6xl">
-          {products.map((p, i) => (
-            <div
-              key={p.handle}
-              className={`aspect-[3/4] ${i % 2 ? "mb-3 sm:mb-6" : ""} ${i > 5 ? "hidden lg:block" : i > 3 ? "hidden sm:block" : ""}`}
-            >
-              <PackVisual product={p} size="sm" priority />
-            </div>
-          ))}
-        </div>
+      <div className="bg-cream-light">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/hero.webp"
+          alt="All eight Ready to Feast marinated chicken breast flavours"
+          width={1376}
+          height={768}
+          fetchPriority="high"
+          className="mx-auto aspect-[16/9] w-full max-w-[1600px] object-cover object-bottom sm:aspect-[21/9]"
+        />
       </div>
       <div className="bg-maroon py-12 text-center sm:py-16">
         <div className="container-x">

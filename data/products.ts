@@ -4,6 +4,7 @@ import type { Product } from "@/lib/types";
 // Drop real photos in /public/images/products/<handle>-1.webp etc. and add them to `images`.
 const inr = (amount: number) => ({ amount, currencyCode: "INR" as const });
 const pack = { weight: "250g", pieces: "2 breasts", protein: "30g+" };
+const photo = (file: string, alt: string) => ({ url: `/images/products/${file}.webp`, alt, width: 1024, height: 1024 });
 
 export const products: Product[] = [
   {
@@ -13,7 +14,10 @@ export const products: Product[] = [
     description:
       "The tandoori you grew up with, minus the tandoor. Freshly ground spices, mustard oil and smoked paprika worked deep into lean chicken breast, so you get that charred, smoky hit straight off the pan.",
     price: inr(249),
-    images: [],
+    images: [
+      photo("classic-smoke-tandoori-1", "Ready to Feast Classic Smoke Tandoori marinated chicken breast pack"),
+      photo("classic-smoke-tandoori-2", "Classic Smoke Tandoori chicken breast, pan-seared and sliced (serving suggestion)"),
+    ],
     tags: ["indian", "smoky", "bestseller"],
     color: "#D9541E",
     colorText: "#FFFFFF",
@@ -127,7 +131,7 @@ export const products: Product[] = [
     description:
       "Gentle but full of character. Thick yogurt, cracked black peppercorns and green cardamom make a velvety marinade that keeps every bite soft and juicy.",
     price: inr(249),
-    images: [],
+    images: [photo("dahi-n-kaali-mirch-1", "Ready to Feast Dahi n Kaali Mirch marinated chicken breast pack")],
     tags: ["indian", "mild"],
     color: "#F4F1EA",
     colorText: "#1E1B18",
@@ -147,7 +151,7 @@ export const products: Product[] = [
     description:
       "A fiery African bird's-eye chilli marinade with garlic, lemon and paprika. Bright, punchy heat that loves the grill.",
     price: inr(249),
-    images: [],
+    images: [photo("peri-peri-1", "Ready to Feast Peri Peri marinated chicken breast pack")],
     tags: ["international", "spicy"],
     color: "#E23B2E",
     colorText: "#FFFFFF",

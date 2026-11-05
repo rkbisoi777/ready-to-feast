@@ -36,7 +36,7 @@ export default async function HomePage() {
           ],
         }}
       />
-      <Hero products={products} />
+      <Hero />
       <StatBadges />
       <section id="flavours" aria-labelledby="flavours-title" className="section">
         <div className="container-x">

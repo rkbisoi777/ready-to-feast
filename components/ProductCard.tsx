@@ -9,7 +9,7 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <article className="group flex flex-col">
       <div className="relative overflow-hidden rounded-2xl bg-cream-light">
-        <QuickViewButton handle={product.handle} label={`Quick view ${product.title}`} className="block aspect-square w-full p-[10%]">
+        <QuickViewButton handle={product.handle} label={`Quick view ${product.title}`} className={`block aspect-square w-full ${product.images.length ? "" : "p-[10%]"}`}>
           <div className="h-full transition-transform duration-300 group-hover:scale-[1.04]">
             <PackVisual product={product} />
           </div>

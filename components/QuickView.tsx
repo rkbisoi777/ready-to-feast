@@ -21,7 +21,7 @@ export default function QuickView({ handle, onClose }: { handle: string | null; 
       {p && (
         <div className="px-5 py-5 sm:px-7">
           <div className="flex gap-5">
-            <div className="h-36 shrink-0 rounded-2xl bg-cream-light p-3 sm:h-44">
+            <div className={`aspect-square h-36 shrink-0 overflow-hidden rounded-2xl bg-cream-light sm:h-44 ${p.images.length ? "" : "p-3"}`}>
               <PackVisual product={p} size="sm" />
             </div>
             <div className="min-w-0">

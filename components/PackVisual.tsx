@@ -27,7 +27,7 @@ export default function PackVisual({
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : "auto"}
         decoding="async"
-        className="h-full w-full object-contain"
+        className="h-full w-full object-cover"
       />
     );
   }
