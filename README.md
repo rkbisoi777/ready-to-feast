@@ -1,7 +1,7 @@
 # Ready to Feast
 
 The static marketing and ordering site for Ready to Feast, built with Next.js 16, React 19 and Tailwind CSS 4.
-There is no backend and no login. Customers add flavours to a cart (the floating bag button), check out with their name, number and address, and the order goes to you by email (Web3Forms) and on WhatsApp (a link that opens a typed-out message).
+There is no backend and no login. Customers add flavours to a cart (the bag icon at the top right), check out with their name, number and address, and the order goes to you by email (Web3Forms) and on WhatsApp (a link that opens a typed-out message).
 Delivery is limited to Mumbai, Navi Mumbai and Thane (`serviceAreas` in `data/site.ts`).
 
 ## Develop

@@ -7,7 +7,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import CartProvider from "@/components/CartProvider";
-import FloatingCart from "@/components/FloatingCart";
 
 const barlow = Barlow({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-barlow", display: "swap" });
 const barlowCondensed = Barlow_Condensed({
@@ -57,7 +56,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
           <main id="main">{children}</main>
           <Footer />
-          <FloatingCart />
           <WhatsAppFloat />
         </CartProvider>
       </body>

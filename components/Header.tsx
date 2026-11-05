@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
-import { CloseIcon, MenuIcon } from "./Icons";
+import { BagIcon, CloseIcon, MenuIcon } from "./Icons";
+import { useCart } from "./CartProvider";
 
 const nav = [
   { href: "/", label: "Home" },
@@ -16,6 +17,7 @@ const nav = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const { count, openCart } = useCart();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -51,7 +53,24 @@ export default function Header() {
           </ul>
         </nav>
 
-        <Link href="/products/" className="btn-primary !px-4 !py-2 !text-base sm:!px-5">Shop now</Link>
+        <div className="flex items-center gap-3">
+          <Link href="/products/" className="btn-primary hidden !px-5 !py-2 !text-base sm:inline-flex">
+            Shop now
+          </Link>
+          <button
+            type="button"
+            onClick={openCart}
+            aria-label={`Open cart, ${count} ${count === 1 ? "item" : "items"}`}
+            className="relative -mr-2 rounded-full p-2 hover:bg-white/10"
+          >
+            <BagIcon className="size-7" />
+            {count > 0 && (
+              <span className="absolute -right-0.5 -top-0.5 grid min-w-5 place-items-center rounded-full bg-ember px-1 text-xs font-bold leading-5 text-white ring-2 ring-maroon">
+                {count}
+              </span>
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
