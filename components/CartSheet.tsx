@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { site } from "@/data/site";
 import { getProductSync } from "@/lib/catalog";
 import { formatPrice } from "@/lib/format";
-import { orderTotal, submitOrder } from "@/lib/order";
+import { LIMITS, orderTotal, submitOrder } from "@/lib/order";
 import type { Customer } from "@/lib/types";
 import { useCart } from "./CartProvider";
 import Sheet from "./Sheet";
@@ -21,6 +21,7 @@ export default function CartSheet({ open, onClose }: { open: boolean; onClose: (
   const [customer, setCustomer] = useState<Customer>(emptyCustomer);
   const [errors, setErrors] = useState<Partial<Record<keyof Customer, string>>>({});
   const [submitting, setSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState(false);
   const [result, setResult] = useState<{ emailed: boolean; whatsappUrl: string; total: number } | null>(null);
 
   // Start at the cart each time it is reopened after an order or with an empty cart.
@@ -47,7 +48,7 @@ export default function CartSheet({ open, onClose }: { open: boolean; onClose: (
     ev.preventDefault();
     if (!validate() || items.length === 0) return;
     setSubmitting(true);
-    const res = await submitOrder({ items, customer });
+    const res = await submitOrder({ items, customer }, honeypot);
     setResult({ ...res, total });
     setSubmitting(false);
     setStep("done");
@@ -61,6 +62,7 @@ export default function CartSheet({ open, onClose }: { open: boolean; onClose: (
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => setCustomer((c) => ({ ...c, [key]: e.target.value })),
     "aria-invalid": errors[key] ? true : undefined,
     "aria-describedby": errors[key] ? `co-${key}-error` : undefined,
+    maxLength: LIMITS[key],
     className: "input",
   });
   const FieldError = ({ k }: { k: keyof Customer }) =>
@@ -152,6 +154,17 @@ export default function CartSheet({ open, onClose }: { open: boolean; onClose: (
         }
       >
         <form id="checkout-form" onSubmit={placeOrder} noValidate className="grid gap-4 px-5 py-5 sm:grid-cols-2 sm:px-7">
+          {/* Honeypot: hidden from people, bots tend to tick it. */}
+          <input
+            type="checkbox"
+            name="botcheck"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="hidden"
+            checked={honeypot}
+            onChange={(e) => setHoneypot(e.target.checked)}
+          />
           <div className="sm:col-span-2">
             <label htmlFor="co-name" className="mb-1 block font-medium">Full name *</label>
             <input {...input("name")} autoComplete="name" required />
@@ -179,7 +192,7 @@ export default function CartSheet({ open, onClose }: { open: boolean; onClose: (
           </div>
           <div>
             <label htmlFor="co-pincode" className="mb-1 block font-medium">Pincode *</label>
-            <input {...input("pincode")} inputMode="numeric" maxLength={6} autoComplete="postal-code" required />
+            <input {...input("pincode")} inputMode="numeric" autoComplete="postal-code" required />
             <FieldError k="pincode" />
           </div>
           <div className="sm:col-span-2">

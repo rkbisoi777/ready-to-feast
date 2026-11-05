@@ -43,3 +43,12 @@ UI components never read data files directly:
 - `lib/order.ts` holds `submitOrder()`. Replace it with Shopify cart and checkout creation.
 - `components/CartProvider.tsx` keeps the cart as `{ handle, quantity }` items, the same shape as a Shopify cart line.
 - `lib/types.ts` defines the `Product` type, which uses Shopify-style fields (`handle`, `title`, `price`, `images`), so product URLs (`/products/<handle>/`) stay the same.
+
+## Security
+
+- Static site: no server, database, login or payment handling on the site.
+- Security headers (Content-Security-Policy, HSTS, X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy) are set in `netlify.toml`, and the same headers in `vercel.json`. Keep the two files in sync.
+- Checkout has a hidden honeypot field against spam bots, length limits on every field, and input cleaning before the order email and WhatsApp message are built.
+- The saved cart in the browser is checked on load: unknown products are dropped and quantities are capped at 1–20.
+- The Web3Forms access key is public by design. It can only send emails to your inbox.
+- Run `npm audit` after updating dependencies.

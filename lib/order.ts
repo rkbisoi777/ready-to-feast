@@ -1,14 +1,20 @@
 import { site } from "@/data/site";
 import { getProductSync } from "./catalog";
 import { formatPrice } from "./format";
-import type { LineItem, Order } from "./types";
+import type { Customer, LineItem, Order } from "./types";
+
+export const LIMITS: Record<keyof Customer, number> = { name: 80, phone: 15, address: 300, area: 30, pincode: 6, notes: 200 };
+
+/** Trim, cap length and strip WhatsApp formatting characters from user input. */
+const clean = (v: string | undefined, max: number) => (v ?? "").replace(/[*_~`]/g, "").replace(/\s+/g, " ").trim().slice(0, max);
 
 export function orderTotal(items: LineItem[]): number {
   return items.reduce((sum, i) => sum + (getProductSync(i.handle)?.price.amount ?? 0) * i.quantity, 0);
 }
 
 export function orderText(order: Order): string {
-  const c = order.customer;
+  const raw = order.customer;
+  const c = Object.fromEntries(Object.entries(raw).map(([k, v]) => [k, clean(v, LIMITS[k as keyof Customer] ?? 200)])) as Customer;
   const lines = order.items.map((i) => `• ${getProductSync(i.handle)?.title ?? i.handle} × ${i.quantity}`);
   return [
     `*New order – ${site.name}*`,
@@ -34,9 +40,11 @@ export function whatsappLink(text: string): string {
  * Sends the order by email (Web3Forms) and returns the WhatsApp link to open.
  * To move to Shopify later, replace this with a cart/checkout creation call.
  */
-export async function submitOrder(order: Order): Promise<{ emailed: boolean; whatsappUrl: string }> {
+export async function submitOrder(order: Order, botcheck = false): Promise<{ emailed: boolean; whatsappUrl: string }> {
   const text = orderText(order);
   let emailed = false;
+  // Honeypot filled in = a bot. Pretend success, send nothing.
+  if (botcheck) return { emailed: true, whatsappUrl: whatsappLink(text) };
   if (site.web3formsKey) {
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
@@ -47,6 +55,7 @@ export async function submitOrder(order: Order): Promise<{ emailed: boolean; wha
           subject: `New order from ${order.customer.name} – ${formatPrice(orderTotal(order.items))}`,
           from_name: site.name,
           message: text.replace(/\*/g, ""),
+          botcheck: false,
         }),
       });
       emailed = res.ok;

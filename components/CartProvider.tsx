@@ -36,7 +36,12 @@ export default function CartProvider({ children }: { children: React.ReactNode }
   useEffect(() => {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]") as LineItem[];
-      setItems(saved.filter((i) => getProductSync(i.handle) && i.quantity > 0));
+      // Only trust well-formed entries for known products, with sane quantities.
+      setItems(
+        (Array.isArray(saved) ? saved : [])
+          .filter((i) => i && typeof i.handle === "string" && getProductSync(i.handle) && Number.isInteger(i.quantity))
+          .map((i) => ({ handle: i.handle, quantity: Math.min(20, Math.max(1, i.quantity)) }))
+      );
     } catch {}
     setLoaded(true);
   }, []);
