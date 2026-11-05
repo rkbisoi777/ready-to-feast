@@ -36,7 +36,7 @@ export const products: Product[] = [
     description:
       "A steakhouse feel at home. Slow-cooked onions and cracked black pepper give a deep, savoury-sweet crust that turns any weeknight plate into something special.",
     price: inr(249),
-    images: [],
+    images: [photo("caramelised-onion-1", "Ready to Feast Caramelised Onion marinated chicken breast pack")],
     tags: ["continental", "umami"],
     color: "#7A4A2A",
     colorText: "#FFFFFF",
@@ -55,7 +55,7 @@ export const products: Product[] = [
     description:
       "Comfort food that still hits your macros. Roasted garlic and herbs, balanced with fresh parsley, for a creamy, buttery bite that kids and gym-goers both love.",
     price: inr(249),
-    images: [],
+    images: [photo("butter-garlic-1", "Ready to Feast Butter Garlic marinated chicken breast pack")],
     tags: ["continental", "mild"],
     color: "#EFE6CF",
     colorText: "#3A2A12",
@@ -74,7 +74,7 @@ export const products: Product[] = [
     description:
       "A Mediterranean classic. Crushed basil, toasted pine nuts, olive oil and sharp parmesan notes, made for salads, bowls and anything summery.",
     price: inr(249),
-    images: [],
+    images: [photo("pesto-1", "Ready to Feast Pesto marinated chicken breast pack")],
     tags: ["continental", "herby"],
     color: "#3E8A3A",
     colorText: "#FFFFFF",
@@ -93,7 +93,7 @@ export const products: Product[] = [
     description:
       "Straight from a Maharashtrian kitchen. Coarse green chillies, roasted garlic and a hint of roasted peanuts — fiery, rustic and seriously addictive.",
     price: inr(249),
-    images: [],
+    images: [photo("maharashtrian-thecha-1", "Ready to Feast Maharashtrian Thecha marinated chicken breast pack")],
     tags: ["indian", "spicy", "regional"],
     color: "#8DBF4A",
     colorText: "#1E2A10",
@@ -112,7 +112,7 @@ export const products: Product[] = [
     description:
       "The legendary 65, Andhra-style. Curry leaves, crushed red chillies and mustard seeds bring the tang and the heat — great as a meal or a high-protein starter.",
     price: inr(249),
-    images: [],
+    images: [photo("andhra-style-65-1", "Ready to Feast Andhra Style 65 marinated chicken breast pack")],
     tags: ["indian", "spicy", "regional", "bestseller"],
     color: "#A3162B",
     colorText: "#FFFFFF",
