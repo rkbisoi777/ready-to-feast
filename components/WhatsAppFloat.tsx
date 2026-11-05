@@ -9,9 +9,10 @@ export default function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
-      className="fixed bottom-5 right-5 z-30 grid size-14 place-items-center rounded-full bg-whatsapp text-white shadow-lg shadow-black/20 transition-transform hover:scale-105"
+      className="fixed bottom-5 right-5 z-30 grid size-14 place-items-center rounded-full bg-whatsapp text-white shadow-lg shadow-black/20 transition-transform hover:scale-110"
     >
-      <WhatsAppIcon className="size-8" />
+      <span aria-hidden className="absolute inset-0 animate-ring rounded-full bg-whatsapp" />
+      <WhatsAppIcon className="relative size-8" />
     </a>
   );
 }

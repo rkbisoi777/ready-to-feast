@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import CartProvider from "@/components/CartProvider";
+import RevealObserver from "@/components/RevealObserver";
 
 const barlow = Barlow({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-barlow", display: "swap" });
 const barlowCondensed = Barlow_Condensed({
@@ -44,7 +45,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" className={`${barlow.variable} ${barlowCondensed.variable}`}>
+    <html lang="en-IN" className={`${barlow.variable} ${barlowCondensed.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body>
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2">
           Skip to content
@@ -57,6 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main id="main">{children}</main>
           <Footer />
           <WhatsAppFloat />
+          <RevealObserver />
         </CartProvider>
       </body>
     </html>

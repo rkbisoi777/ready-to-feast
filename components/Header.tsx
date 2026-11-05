@@ -19,12 +19,21 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const { count, openCart } = useCart();
 
+  const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="bg-maroon text-white">
+    <header className={`bg-maroon text-white transition-shadow duration-300 ${scrolled ? "shadow-lg shadow-black/25" : ""}`}>
       <div className="container-x flex h-16 items-center justify-between gap-4 lg:h-20">
         <button
           type="button"
@@ -45,7 +54,10 @@ export default function Header() {
           <ul className="flex gap-7 font-display text-lg font-semibold uppercase tracking-wide">
             {nav.map((n) => (
               <li key={n.href}>
-                <Link href={n.href} className="text-white/85 hover:text-white">
+                <Link
+                  href={n.href}
+                  className="relative text-white/85 transition-colors after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-mustard after:transition-transform after:duration-300 hover:text-white hover:after:scale-x-100"
+                >
                   {n.label}
                 </Link>
               </li>
@@ -54,9 +66,6 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href="/products/" className="btn-primary hidden !px-5 !py-2 !text-base sm:inline-flex">
-            Shop now
-          </Link>
           <button
             type="button"
             onClick={openCart}
@@ -65,7 +74,7 @@ export default function Header() {
           >
             <BagIcon className="size-7" />
             {count > 0 && (
-              <span className="absolute -right-0.5 -top-0.5 grid min-w-5 place-items-center rounded-full bg-ember px-1 text-xs font-bold leading-5 text-white ring-2 ring-maroon">
+              <span key={count} className="absolute -right-0.5 -top-0.5 grid animate-pop min-w-5 place-items-center rounded-full bg-ember px-1 text-xs font-bold leading-5 text-white ring-2 ring-maroon">
                 {count}
               </span>
             )}
@@ -93,8 +102,12 @@ export default function Header() {
             <CloseIcon />
           </button>
           <ul className="space-y-4 font-display text-2xl font-bold uppercase">
-            {nav.map((n) => (
-              <li key={n.href}>
+            {nav.map((n, i) => (
+              <li
+                key={n.href}
+                className={`transition-all duration-500 ${open ? "translate-x-0 opacity-100" : "-translate-x-4 opacity-0"}`}
+                style={{ transitionDelay: open ? `${100 + i * 50}ms` : "0ms" }}
+              >
                 <Link href={n.href} onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
                   {n.label}
                 </Link>

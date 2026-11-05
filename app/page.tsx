@@ -3,6 +3,7 @@ import { faqs } from "@/data/content";
 import { site } from "@/data/site";
 import Hero from "@/components/Hero";
 import StatBadges from "@/components/StatBadges";
+import Marquee from "@/components/Marquee";
 import ProductGrid from "@/components/ProductGrid";
 import SectionHeading from "@/components/SectionHeading";
 import WhyUs from "@/components/WhyUs";
@@ -37,6 +38,7 @@ export default async function HomePage() {
         }}
       />
       <Hero />
+      <Marquee />
       <StatBadges />
       <section id="flavours" aria-labelledby="flavours-title" className="section">
         <div className="container-x">

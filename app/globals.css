@@ -14,9 +14,40 @@
 
   --font-display: var(--font-barlow-condensed), "Arial Narrow", sans-serif;
   --font-sans: var(--font-barlow), system-ui, sans-serif;
+
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --animate-fade-up: fade-up 0.8s var(--ease-out-soft) both;
+  --animate-hero-zoom: hero-zoom 1.8s var(--ease-out-soft) both;
+  --animate-marquee: marquee 35s linear infinite;
+  --animate-pop: pop 0.35s var(--ease-out-soft);
+  --animate-ring: ring 2.6s ease-out infinite;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes hero-zoom {
+    from { opacity: 0; transform: scale(1.06); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+  @keyframes pop {
+    0% { transform: scale(0.4); }
+    60% { transform: scale(1.25); }
+    100% { transform: scale(1); }
+  }
+  @keyframes ring {
+    0% { transform: scale(1); opacity: 0.55; }
+    70%, 100% { transform: scale(1.7); opacity: 0; }
+  }
 }
 
 @layer base {
+  :root {
+    interpolate-size: allow-keywords;
+  }
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 7.5rem;
@@ -34,6 +65,32 @@
   }
   dialog::backdrop {
     background: rgb(30 27 24 / 0.6);
+    animation: backdrop-in 0.25s ease-out;
+  }
+  @keyframes backdrop-in {
+    from { opacity: 0; }
+  }
+
+  /* Scroll reveal: only hides content once JS has confirmed it can reveal it. */
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s var(--ease-out-soft), transform 0.7s var(--ease-out-soft);
+    transition-delay: var(--d, 0ms);
+  }
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Smooth FAQ open/close where supported (progressive enhancement). */
+  details::details-content {
+    block-size: 0;
+    overflow-y: clip;
+    transition: block-size 0.35s var(--ease-out-soft), content-visibility 0.35s allow-discrete;
+  }
+  details[open]::details-content {
+    block-size: auto;
   }
   dialog.sheet[open] {
     animation: sheet-up 0.25s ease-out;
@@ -59,15 +116,15 @@
   }
 
 @utility btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-display text-lg font-semibold uppercase tracking-wide transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-display text-lg font-semibold uppercase tracking-wide transition-[background-color,color,transform,box-shadow] duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0;
   }
 
 @utility btn-primary {
-    @apply btn bg-ember text-white hover:bg-ember-dark;
+    @apply btn bg-ember text-white shadow-md shadow-ember/25 hover:bg-ember-dark hover:shadow-lg hover:shadow-ember/30;
   }
 
 @utility btn-light {
-    @apply btn bg-white text-maroon hover:bg-cream;
+    @apply btn bg-white text-maroon shadow-md shadow-black/15 hover:bg-cream;
   }
 
 @utility btn-outline {

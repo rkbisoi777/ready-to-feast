@@ -14,8 +14,8 @@ export default async function ProductsPage() {
     <>
       <section className="bg-maroon py-12 text-center sm:py-16">
         <div className="container-x">
-          <h1 className="text-5xl text-cream sm:text-7xl">All flavours</h1>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-mustard">
+          <h1 className="animate-fade-up text-5xl text-cream sm:text-7xl">All flavours</h1>
+          <p className="mx-auto mt-4 max-w-xl animate-fade-up text-lg text-mustard [animation-delay:150ms]">
             Fresh, lean chicken breasts, marinated for hours in real spices. Delivered fresh across Mumbai, Navi Mumbai and Thane.
           </p>
         </div>

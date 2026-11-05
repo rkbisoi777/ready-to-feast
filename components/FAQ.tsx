@@ -1,18 +1,21 @@
 import { faqs } from "@/data/content";
 import SectionHeading from "./SectionHeading";
 import { PlusIcon } from "./Icons";
+import { reveal } from "@/lib/reveal";
 
 export default function FAQ() {
   return (
     <section id="faq" aria-labelledby="faq-title" className="section">
       <div className="container-x max-w-3xl">
         <SectionHeading id="faq-title" eyebrow="FAQ" title="Frequently asked questions" />
-        <div className="divide-y divide-ink/10 border-y border-ink/10">
+        <div className="divide-y divide-ink/10 border-y border-ink/10" {...reveal()}>
           {faqs.map((f) => (
             <details key={f.q} className="group py-1">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 font-display text-xl font-semibold uppercase text-maroon [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 font-display text-xl font-semibold uppercase text-maroon transition-colors hover:text-ember [&::-webkit-details-marker]:hidden">
                 {f.q}
-                <PlusIcon className="size-5 shrink-0 transition-transform group-open:rotate-45" />
+                <span className="grid size-8 shrink-0 place-items-center rounded-full bg-cream transition-[transform,background-color] duration-300 group-open:rotate-45 group-open:bg-ember group-open:text-white">
+                  <PlusIcon className="size-4" />
+                </span>
               </summary>
               <p className="pb-5 text-muted">{f.a}</p>
             </details>

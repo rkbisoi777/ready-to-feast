@@ -80,7 +80,7 @@ export default async function ProductPage({ params }: Props) {
       <section className="lg:container-x lg:grid lg:grid-cols-2 lg:gap-0 lg:pb-16">
         <ProductGallery product={product} />
 
-        <div className="bg-cream px-4 py-8 sm:px-8 lg:rounded-r-3xl lg:px-12 lg:py-12">
+        <div className="animate-fade-up bg-cream px-4 py-8 [animation-delay:120ms] sm:px-8 lg:rounded-r-3xl lg:px-12 lg:py-12">
           <p className="mb-2 inline-flex items-center gap-2 text-sm font-medium text-muted">
             <span className="size-3 rounded-full ring-1 ring-ink/20" style={{ background: product.color }} aria-hidden />
             {product.colorName}
@@ -106,7 +106,7 @@ export default async function ProductPage({ params }: Props) {
             <p className="font-semibold">Best paired with</p>
             <ul className="mt-2 flex flex-wrap gap-2">
               {product.pairings.map((x) => (
-                <li key={x} className="rounded-full bg-white px-3 py-1 text-sm">{x}</li>
+                <li key={x} className="rounded-full bg-white px-3 py-1 text-sm shadow-sm">{x}</li>
               ))}
             </ul>
           </div>
