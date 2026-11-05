@@ -43,7 +43,11 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="container-x flex flex-col gap-2 py-6 text-sm sm:flex-row sm:justify-between">
           <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
-          <p>FSSAI Lic. No. {site.fssai}</p>
+          <p className="flex flex-wrap gap-x-4 gap-y-1">
+            <Link href="/privacy-policy/" className="hover:text-white">Privacy Policy</Link>
+            <Link href="/terms/" className="hover:text-white">Terms &amp; Conditions</Link>
+            <span>FSSAI Lic. No. {site.fssai}</span>
+          </p>
         </div>
       </div>
     </footer>

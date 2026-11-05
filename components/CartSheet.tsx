@@ -186,7 +186,11 @@ export default function CartSheet({ open, onClose }: { open: boolean; onClose: (
             <label htmlFor="co-notes" className="mb-1 block font-medium">Notes (optional)</label>
             <input {...input("notes")} placeholder="Preferred delivery time, etc." />
           </div>
-          <p className="text-sm text-muted sm:col-span-2">We currently deliver only in {site.serviceAreas.join(", ")}.</p>
+          <p className="text-sm text-muted sm:col-span-2">
+            We currently deliver only in {site.serviceAreas.join(", ")}. By placing an order you agree to our{" "}
+            <Link href="/terms/" onClick={onClose} className="underline">Terms</Link> and{" "}
+            <Link href="/privacy-policy/" onClick={onClose} className="underline">Privacy Policy</Link>.
+          </p>
         </form>
       </Sheet>
     );
